@@ -7,6 +7,7 @@
  */
 
 import { useState, useEffect, useContext, createContext, useCallback, useRef } from "react";
+import { Analytics } from '@vercel/analytics/react';
 
 // ── Font injection ──────────────────────────────────────────
 if (!document.getElementById("am-fonts")) {
@@ -2061,6 +2062,7 @@ export default function App() {
           </Layout>
         </ToastProvider>
       </AuthProvider>
+      <Analytics />
     </RouterProvider>
   );
 }
