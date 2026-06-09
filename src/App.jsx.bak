@@ -16,7 +16,7 @@ if (!document.getElementById("am-fonts")) {
   document.head.appendChild(l);
 }
 
-// ── Global CSS — mobile-first responsive ───────────────────
+// ── Global CSS — exact index.css tokens ────────────────────
 if (!document.getElementById("am-styles")) {
   const s = document.createElement("style");
   s.id = "am-styles";
@@ -26,38 +26,34 @@ if (!document.getElementById("am-styles")) {
   --ink-900:#111827; --ink-800:#1F2937; --ink-700:#374151; --ink-600:#4A4A4A;
   --ink-500:#6B7280; --ink-400:#9CA3AF; --ink-300:#D1D5DB; --ink-200:#E5E7EB;
   --ink-100:#F3F4F6; --ink-50:#F9FAFB; --r:0.5rem;
-  --px:16px;
 }
-@media(min-width:640px){:root{--px:24px;}}
-@media(min-width:1024px){:root{--px:32px;}}
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;color:var(--ink-900);background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body{font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;color:var(--ink-900);background:#fff;-webkit-font-smoothing:antialiased;}
 h1,h2,h3,h4,h5,h6{font-family:'Outfit',ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.01em;}
 button,input,select,textarea{font-family:inherit;}
 a{text-decoration:none;color:inherit;}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand)!important;box-shadow:0 0 0 3px rgba(232,98,26,.15);}
 ::selection{background:var(--brand);color:white;}
 
-/* am-logo-mark starburst */
+/* am-logo-mark starburst — exact from index.css */
 .am-logo-mark{position:relative;width:28px;height:28px;display:inline-block;flex-shrink:0;}
 .am-logo-mark::before,.am-logo-mark::after{content:'';position:absolute;inset:0;background:var(--brand);clip-path:polygon(50% 0%,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0% 50%,40% 40%);}
 .am-logo-mark::after{transform:rotate(22deg);background:var(--ink-800);opacity:.85;clip-path:polygon(50% 10%,56% 44%,90% 50%,56% 56%,50% 90%,44% 56%,10% 50%,44% 44%);}
 
-/* product-image-wrap hover swap */
+/* product-image-wrap hover swap — exact from index.css */
 .product-image-wrap{position:relative;overflow:hidden;}
 .product-image-wrap img.primary,.product-image-wrap img.secondary{transition:opacity .35s ease,transform .6s ease;}
 .product-image-wrap img.secondary{position:absolute;inset:0;opacity:0;}
 .product-image-wrap:hover img.primary{opacity:0;transform:scale(1.04);}
 .product-image-wrap:hover img.secondary{opacity:1;transform:scale(1.04);}
 
-/* skeleton shimmer */
+/* skeleton shimmer — exact from index.css */
 .skeleton{position:relative;overflow:hidden;background-color:var(--ink-100);border-radius:4px;}
 .skeleton::after{content:'';position:absolute;inset:0;background-image:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%);animation:shimmer 1.4s infinite;}
 @keyframes shimmer{100%{transform:translateX(100%);}}
 
-/* form-input */
-.form-input{width:100%;height:44px;padding:0 12px;font-size:16px;background:white;border:1.5px solid var(--ink-300);border-radius:var(--r);transition:border-color .15s,box-shadow .15s;}
+/* form-input — used in admin modal */
+.form-input{width:100%;height:40px;padding:0 12px;font-size:14px;background:white;border:1.5px solid var(--ink-300);border-radius:var(--r);transition:border-color .15s,box-shadow .15s;}
 .form-input:focus{border-color:var(--brand)!important;box-shadow:0 0 0 3px rgba(232,98,26,.15);}
 textarea.form-input{height:auto;padding:10px 12px;resize:vertical;}
 
@@ -67,90 +63,6 @@ textarea.form-input{height:auto;padding:10px 12px;resize:vertical;}
 .toast-enter{animation:toastIn .28s ease;}
 ::-webkit-scrollbar{width:6px;height:6px;}
 ::-webkit-scrollbar-thumb{background:var(--ink-300);border-radius:3px;}
-
-/* ── Responsive grid helpers ── */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.grid-4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-@media(min-width:640px){.grid-4{grid-template-columns:repeat(3,1fr);gap:20px;}}
-@media(min-width:1024px){.grid-4{grid-template-columns:repeat(4,1fr);gap:24px;}}
-
-.grid-3{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-@media(min-width:640px){.grid-3{grid-template-columns:repeat(3,1fr);gap:16px;}}
-@media(min-width:1024px){.grid-3{grid-template-columns:repeat(3,1fr);gap:24px;}}
-
-/* ── Announcement bar — hide secondary text on mobile ── */
-.ann-secondary{display:none;}
-@media(min-width:640px){.ann-secondary{display:flex;}}
-
-/* ── Navbar desktop-only elements ── */
-.nav-search{display:none;}
-.nav-dept-btn{display:none;}
-.nav-shop-btn{display:none;}
-.nav-account-btn span{display:none;}
-@media(min-width:768px){
-  .nav-search{display:block;flex:1;max-width:480px;}
-  .nav-dept-btn{display:inline-flex;}
-  .nav-shop-btn{display:inline-flex;}
-  .nav-account-btn span{display:inline;}
-}
-
-/* ── Mobile search bar (shown below navbar on mobile) ── */
-.mobile-search{display:block;padding:8px var(--px);background:white;border-bottom:1px solid var(--ink-200);}
-@media(min-width:768px){.mobile-search{display:none;}}
-
-/* ── Category rail — scrollable on mobile ── */
-.cat-rail{display:flex;align-items:center;gap:4px;height:44px;border-top:1px solid var(--ink-100);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.cat-rail::-webkit-scrollbar{display:none;}
-
-/* ── Hero — stack on mobile ── */
-.hero-inner{position:relative;max-width:1280px;margin:0 auto;padding:48px var(--px);display:flex;flex-direction:column;gap:32px;align-items:flex-start;}
-@media(min-width:768px){.hero-inner{padding:80px var(--px);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}}
-.hero-imgs{display:none;}
-@media(min-width:768px){.hero-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;}}
-
-/* ── Trust bar — 2 cols mobile, 4 desktop ── */
-.trust-grid{max-width:1280px;margin:0 auto;padding:20px var(--px);display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media(min-width:768px){.trust-grid{grid-template-columns:repeat(4,1fr);gap:24px;padding:24px var(--px);}}
-
-/* ── Section padding ── */
-.section-pad{max-width:1280px;margin:0 auto;padding:40px var(--px);}
-@media(min-width:768px){.section-pad{padding:64px var(--px);}}
-
-/* ── Categories grid ── */
-.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-@media(min-width:480px){.cat-grid{grid-template-columns:repeat(3,1fr);gap:16px;}}
-@media(min-width:1024px){.cat-grid{grid-template-columns:repeat(4,1fr);gap:20px;}}
-
-/* ── Promo bento ── */
-.bento{display:grid;grid-template-columns:1fr;gap:16px;}
-@media(min-width:768px){.bento{grid-template-columns:8fr 4fr;gap:24px;}}
-
-/* ── Shop layout ── */
-.shop-layout{display:grid;grid-template-columns:1fr;}
-@media(min-width:1024px){.shop-layout{grid-template-columns:240px 1fr;gap:32px;}}
-.shop-sidebar{display:none;}
-@media(min-width:1024px){.shop-sidebar{display:block;}}
-
-/* ── Product detail ── */
-.detail-grid{display:grid;grid-template-columns:1fr;}
-@media(min-width:768px){.detail-grid{grid-template-columns:1fr 1fr;gap:48px;}}
-
-/* ── Footer grid ── */
-.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-@media(min-width:768px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}}
-@media(min-width:1024px){.footer-grid{grid-template-columns:4fr 2fr 2fr 2fr 2fr;gap:40px;}}
-
-/* ── Mobile menu drawer ── */
-.mobile-menu{position:fixed;inset:0;z-index:60;}
-.mobile-menu-panel{position:absolute;left:0;top:0;bottom:0;width:85%;max-width:320px;background:white;overflow-y:auto;box-shadow:4px 0 32px rgba(0,0,0,.15);}
-
-/* ── Account grid ── */
-.account-grid{display:grid;grid-template-columns:1fr;gap:12px;}
-@media(min-width:640px){.account-grid{grid-template-columns:1fr 1fr;gap:16px;}}
-
-/* ── Admin stats ── */
-.admin-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(min-width:768px){.admin-stats{grid-template-columns:repeat(4,1fr);gap:16px;}}
 `;
   document.head.appendChild(s);
 }
@@ -388,33 +300,37 @@ function Logo({inverted=false}) {
   );
 }
 
-// ── Announcement Bar ───────────────────────────────────────
+// ── Announcement Bar — exact AnnouncementBar.jsx ───────────
 function AnnouncementBar() {
-  const {Truck,Sparkles} = icons;
+  const {Truck,Shield,Sparkles} = icons;
   return (
     <div data-testid="announcement-bar" style={{background:"var(--ink-900)",color:"white",fontSize:12}}>
-      <div style={{maxWidth:1280,margin:"0 auto",padding:"0 var(--px)",height:36,
-        display:"flex",alignItems:"center",justifyContent:"center",gap:16}}>
-        <span style={{display:"flex",alignItems:"center",gap:6}}>
-          <Truck size={13} color="var(--brand)"/>Free shipping over $49
-        </span>
-        <span style={{color:"var(--ink-600)"}}>·</span>
-        <span className="ann-secondary" style={{alignItems:"center",gap:6}}>
-          <Sparkles size={13} color="var(--brand)"/>
-          <span style={{fontWeight:500}}>FLASH SALE — up to 40% off</span>
-        </span>
+      <div style={{maxWidth:1280,margin:"0 auto",padding:"0 32px",height:36,
+        display:"flex",alignItems:"center",justifyContent:"space-between",gap:24}}>
+        <div style={{display:"flex",alignItems:"center",gap:24}}>
+          <span style={{display:"flex",alignItems:"center",gap:6}}>
+            <Truck size={14} color="var(--brand)"/>Free shipping over $49
+          </span>
+          <span style={{display:"flex",alignItems:"center",gap:6}}>
+            <Shield size={14} color="var(--brand)"/>30-day returns
+          </span>
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:6}}>
+          <Sparkles size={14} color="var(--brand)"/>
+          <span style={{fontWeight:500,letterSpacing:"0.02em"}}>FLASH SALE — up to 40% off select categories</span>
+        </div>
       </div>
     </div>
   );
 }
 
-// ── Navbar — fully mobile-responsive ──────────────────────
+// ── Navbar — exact Navbar.jsx ──────────────────────────────
 function Navbar() {
   const {user,logout} = useAuth();
   const navigate = useNavigate();
   const page = usePage();
   const toast = useToast();
-  const {Search,Menu,X,ChevronDown,User,ShoppingBag} = icons;
+  const {Search,Menu,X,ChevronDown,User,ShoppingBag,ArrowLeft} = icons;
   const [search,setSearch] = useState("");
   const [accOpen,setAccOpen] = useState(false);
   const [deptOpen,setDeptOpen] = useState(false);
@@ -427,16 +343,14 @@ function Navbar() {
     return () => document.removeEventListener("mousedown",h);
   },[]);
 
-  // Close mobile menu on navigate
-  const go = (name,params={}) => { navigate(name,params); setMobileOpen(false); setDeptOpen(false); };
-
   const submitSearch = e => {
     e.preventDefault();
-    if(search.trim()) go("shop",{q:search.trim()});
+    if(search.trim()) navigate("shop",{q:search.trim()});
+    setMobileOpen(false);
   };
 
   const handleLogout = async () => {
-    await logout(); setAccOpen(false); setMobileOpen(false); navigate("home");
+    await logout(); setAccOpen(false); navigate("home");
     toast("Signed out successfully");
   };
 
@@ -450,43 +364,33 @@ function Navbar() {
   return (
     <header data-testid="navbar" style={{position:"sticky",top:0,zIndex:40,background:"white",borderBottom:"1px solid var(--ink-200)"}}>
       <AnnouncementBar/>
-      <div style={{maxWidth:1280,margin:"0 auto",padding:"0 var(--px)"}}>
-        <div style={{height:60,display:"flex",alignItems:"center",gap:12}}>
-
-          {/* Hamburger — mobile only */}
-          <button onClick={()=>setMobileOpen(true)} aria-label="Menu"
-            style={{display:"flex",alignItems:"center",justifyContent:"center",
-              width:40,height:40,background:"none",border:"none",cursor:"pointer",
-              color:"var(--ink-700)",flexShrink:0,borderRadius:8}}
-            className="nav-mobile-btn">
-            <Menu size={22}/>
-          </button>
+      <div style={{maxWidth:1280,margin:"0 auto",padding:"0 32px"}}>
+        <div style={{height:64,display:"flex",alignItems:"center",gap:16}}>
 
           <Logo/>
 
-          {/* Desktop: Departments */}
+          {/* Departments toggle */}
           <button data-testid="navbar-departments-toggle" onClick={()=>setDeptOpen(v=>!v)}
-            className="nav-dept-btn"
-            style={{alignItems:"center",gap:6,marginLeft:8,
+            style={{display:"inline-flex",alignItems:"center",gap:6,marginLeft:16,
               padding:"8px 12px",fontSize:13.5,fontWeight:500,color:"var(--ink-700)",
               background:"none",border:"none",cursor:"pointer",borderRadius:6,transition:"color .15s"}}
             onMouseEnter={e=>e.currentTarget.style.color="var(--brand)"}
             onMouseLeave={e=>e.currentTarget.style.color="var(--ink-700)"}>
-            All Departments<ChevronDown size={14}/>
+            <Menu size={16}/>All Departments<ChevronDown size={14}/>
           </button>
 
-          {/* Desktop: Search */}
-          <form onSubmit={submitSearch} className="nav-search">
+          {/* Search bar */}
+          <form onSubmit={submitSearch} style={{flex:1,maxWidth:480}}>
             <div style={{position:"relative"}}>
               <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)",pointerEvents:"none"}}>
                 <Search size={16} color="var(--ink-400)"/>
               </span>
               <input data-testid="navbar-search-input" value={search}
                 onChange={e=>setSearch(e.target.value)} type="text"
-                placeholder="Search products…"
+                placeholder="Search products, brands and more…"
                 style={{width:"100%",height:40,paddingLeft:36,paddingRight:80,fontSize:13.5,
                   background:"var(--ink-50)",border:"1px solid var(--ink-200)",borderRadius:6}}/>
-              <button type="submit"
+              <button data-testid="navbar-search-submit" type="submit"
                 style={{position:"absolute",right:4,top:4,height:32,padding:"0 12px",
                   fontSize:12,fontWeight:600,color:"white",background:"var(--brand)",
                   border:"none",borderRadius:4,cursor:"pointer"}}>
@@ -496,8 +400,8 @@ function Navbar() {
           </form>
 
           {/* Right icons */}
-          <div style={{display:"flex",alignItems:"center",gap:2,marginLeft:"auto"}}>
-            <button onClick={()=>navigate("shop")} className="nav-shop-btn"
+          <div style={{display:"flex",alignItems:"center",gap:4,marginLeft:"auto"}}>
+            <button onClick={()=>navigate("shop")}
               style={navLinkStyle(page.name==="shop")}
               onMouseEnter={e=>e.currentTarget.style.color="var(--brand)"}
               onMouseLeave={e=>e.currentTarget.style.color=page.name==="shop"?"var(--brand)":"var(--ink-700)"}>
@@ -507,14 +411,12 @@ function Navbar() {
             {/* Account dropdown */}
             <div style={{position:"relative"}} ref={accRef}>
               <button data-testid="navbar-account-button" onClick={()=>setAccOpen(v=>!v)}
-                className="nav-account-btn"
                 style={{padding:8,color:"var(--ink-700)",background:"none",border:"none",
                   display:"flex",alignItems:"center",gap:6,cursor:"pointer",
                   borderRadius:6,transition:"color .15s"}}
                 onMouseEnter={e=>e.currentTarget.style.color="var(--brand)"}
                 onMouseLeave={e=>e.currentTarget.style.color="var(--ink-700)"}>
-                <User size={22}/>
-                <span style={{fontSize:12,fontWeight:500}}>Account</span>
+                <User size={20}/><span style={{fontSize:12,fontWeight:500}}>Account</span>
               </button>
               {accOpen && (
                 <div style={{position:"absolute",right:0,top:"calc(100% + 8px)",width:240,
@@ -527,8 +429,8 @@ function Navbar() {
                       </div>
                       {[["Sign in","login","navbar-login-link"],["Create account","register","navbar-register-link"]].map(([l,p,t])=>(
                         <button key={p} data-testid={t} onClick={()=>{navigate(p);setAccOpen(false);}}
-                          style={{display:"block",width:"100%",textAlign:"left",padding:"12px 16px",
-                            background:"none",border:"none",fontSize:14,color:"var(--ink-700)",
+                          style={{display:"block",width:"100%",textAlign:"left",padding:"10px 16px",
+                            background:"none",border:"none",fontSize:13.5,color:"var(--ink-700)",
                             cursor:"pointer",borderBottom:"1px solid var(--ink-50)"}}
                           onMouseEnter={e=>{e.currentTarget.style.background="var(--brand-50)";e.currentTarget.style.color="var(--brand)";}}
                           onMouseLeave={e=>{e.currentTarget.style.background="";e.currentTarget.style.color="var(--ink-700)";}}>
@@ -542,22 +444,30 @@ function Navbar() {
                         <p style={{fontSize:11,color:"var(--ink-500)"}}>Signed in as</p>
                         <p style={{fontSize:13,fontWeight:500,color:"var(--ink-900)"}}>{user.email}</p>
                       </div>
-                      {[
-                        ["My Account","account","navbar-account-link"],
-                        ...(user.role==="admin"?[["Admin","admin","navbar-admin-link"]]:[])
-                      ].map(([l,p,t])=>(
-                        <button key={p} data-testid={t} onClick={()=>{navigate(p);setAccOpen(false);}}
-                          style={{display:"block",width:"100%",textAlign:"left",padding:"12px 16px",
-                            background:"none",border:"none",fontSize:14,color:"var(--ink-700)",
-                            cursor:"pointer",borderBottom:"1px solid var(--ink-50)"}}
+                      <button data-testid="navbar-account-link" onClick={()=>{navigate("account");setAccOpen(false);}}
+                        style={{display:"flex",alignItems:"center",gap:8,width:"100%",
+                          textAlign:"left",padding:"10px 16px",background:"none",
+                          border:"none",fontSize:13.5,color:"var(--ink-700)",cursor:"pointer",
+                          borderBottom:"1px solid var(--ink-50)"}}
+                        onMouseEnter={e=>{e.currentTarget.style.background="var(--brand-50)";e.currentTarget.style.color="var(--brand)";}}
+                        onMouseLeave={e=>{e.currentTarget.style.background="";e.currentTarget.style.color="var(--ink-700)";}}>
+                        <User size={14}/>My Account
+                      </button>
+                      {user.role==="admin" && (
+                        <button data-testid="navbar-admin-link" onClick={()=>{navigate("admin");setAccOpen(false);}}
+                          style={{display:"flex",alignItems:"center",gap:8,width:"100%",
+                            textAlign:"left",padding:"10px 16px",background:"none",
+                            border:"none",fontSize:13.5,color:"var(--ink-700)",cursor:"pointer",
+                            borderBottom:"1px solid var(--ink-50)"}}
                           onMouseEnter={e=>{e.currentTarget.style.background="var(--brand-50)";e.currentTarget.style.color="var(--brand)";}}
                           onMouseLeave={e=>{e.currentTarget.style.background="";e.currentTarget.style.color="var(--ink-700)";}}>
-                          {l}
+                          <icons.LayoutDashboard size={14}/>Admin
                         </button>
-                      ))}
+                      )}
                       <button data-testid="navbar-logout-button" onClick={handleLogout}
-                        style={{display:"block",width:"100%",textAlign:"left",padding:"12px 16px",
-                          background:"none",border:"none",fontSize:14,color:"var(--ink-700)",cursor:"pointer"}}
+                        style={{display:"flex",alignItems:"center",gap:8,width:"100%",
+                          textAlign:"left",padding:"10px 16px",background:"none",
+                          border:"none",fontSize:13.5,color:"var(--ink-700)",cursor:"pointer"}}
                         onMouseEnter={e=>{e.currentTarget.style.background="var(--brand-50)";e.currentTarget.style.color="var(--brand)";}}
                         onMouseLeave={e=>{e.currentTarget.style.background="";e.currentTarget.style.color="var(--ink-700)";}}>
                         Sign out
@@ -571,21 +481,26 @@ function Navbar() {
             {/* Cart */}
             <button data-testid="navbar-cart-button"
               style={{position:"relative",padding:8,color:"var(--ink-700)",
-                background:"none",border:"none",cursor:"pointer",borderRadius:6}} aria-label="Cart">
-              <ShoppingBag size={22}/>
-              <span style={{position:"absolute",top:2,right:2,background:"var(--brand)",
+                background:"none",border:"none",cursor:"pointer",borderRadius:6,
+                transition:"color .15s"}}
+              aria-label="Cart"
+              onMouseEnter={e=>e.currentTarget.style.color="var(--brand)"}
+              onMouseLeave={e=>e.currentTarget.style.color="var(--ink-700)"}>
+              <ShoppingBag size={20}/>
+              <span style={{position:"absolute",top:-2,right:-2,background:"var(--brand)",
                 color:"white",fontSize:10,fontWeight:700,borderRadius:"50%",
                 width:16,height:16,display:"flex",alignItems:"center",justifyContent:"center"}}>0</span>
             </button>
           </div>
         </div>
 
-        {/* Category rail — scrollable */}
-        <nav className="cat-rail">
+        {/* Category rail */}
+        <nav style={{display:"flex",alignItems:"center",gap:4,height:44,
+          borderTop:"1px solid var(--ink-100)",overflowX:"auto"}}>
           {CATEGORIES.map(c => (
             <button key={c.slug} data-testid="navbar-department-link"
               onClick={()=>navigate("category",{slug:c.slug})}
-              style={{...navLinkStyle(page.params?.slug===c.slug),whiteSpace:"nowrap",fontSize:13}}
+              style={{...navLinkStyle(page.params?.slug===c.slug),whiteSpace:"nowrap"}}
               onMouseEnter={e=>e.currentTarget.style.color="var(--brand)"}
               onMouseLeave={e=>e.currentTarget.style.color=page.params?.slug===c.slug?"var(--brand)":"var(--ink-700)"}>
               {c.name}
@@ -594,27 +509,12 @@ function Navbar() {
         </nav>
       </div>
 
-      {/* Mobile search bar */}
-      <div className="mobile-search">
-        <form onSubmit={submitSearch}>
-          <div style={{position:"relative"}}>
-            <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)",pointerEvents:"none"}}>
-              <Search size={16} color="var(--ink-400)"/>
-            </span>
-            <input value={search} onChange={e=>setSearch(e.target.value)} type="search"
-              placeholder="Search products, brands…"
-              style={{width:"100%",height:40,paddingLeft:36,paddingRight:16,fontSize:16,
-                background:"var(--ink-50)",border:"1px solid var(--ink-200)",borderRadius:8}}/>
-          </div>
-        </form>
-      </div>
-
-      {/* Desktop Departments mega-dropdown */}
+      {/* Departments mega-dropdown */}
       {deptOpen && (
         <div style={{position:"absolute",left:0,right:0,background:"white",
           borderBottom:"1px solid var(--ink-200)",boxShadow:"0 8px 32px rgba(0,0,0,.1)",zIndex:30}}
           onClick={()=>setDeptOpen(false)}>
-          <div style={{maxWidth:1280,margin:"0 auto",padding:"24px var(--px)",
+          <div style={{maxWidth:1280,margin:"0 auto",padding:"24px 32px",
             display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12}}>
             {CATEGORIES.map(c => (
               <button key={c.slug} onClick={()=>navigate("category",{slug:c.slug})}
@@ -623,77 +523,14 @@ function Navbar() {
                   cursor:"pointer",transition:"all .15s",textAlign:"left"}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor="var(--brand)";e.currentTarget.style.background="var(--brand-50)";}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--ink-200)";e.currentTarget.style.background="";}}>
-                <img src={c.image} alt={c.name} style={{width:40,height:40,objectFit:"cover",borderRadius:6,flexShrink:0}}/>
+                <img src={c.image} alt={c.name}
+                  style={{width:40,height:40,objectFit:"cover",borderRadius:6,flexShrink:0}}/>
                 <div>
                   <div style={{fontSize:14,fontWeight:600,color:"var(--ink-900)"}}>{c.name}</div>
                   <div style={{fontSize:12,color:"var(--ink-500)"}}>{c.count} items</div>
                 </div>
               </button>
             ))}
-          </div>
-        </div>
-      )}
-
-      {/* Mobile slide-out menu */}
-      {mobileOpen && (
-        <div className="mobile-menu">
-          <div style={{position:"absolute",inset:0,background:"rgba(17,24,39,.6)"}} onClick={()=>setMobileOpen(false)}/>
-          <div className="mobile-menu-panel">
-            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",
-              padding:"16px var(--px)",borderBottom:"1px solid var(--ink-200)"}}>
-              <Logo/>
-              <button onClick={()=>setMobileOpen(false)}
-                style={{padding:8,background:"none",border:"none",cursor:"pointer",color:"var(--ink-700)"}}>
-                <X size={22}/>
-              </button>
-            </div>
-
-            {/* Account section */}
-            <div style={{padding:"16px var(--px)",borderBottom:"1px solid var(--ink-100)",background:"var(--ink-50)"}}>
-              {user ? (
-                <div>
-                  <p style={{fontSize:12,color:"var(--ink-500)"}}>Signed in as</p>
-                  <p style={{fontSize:14,fontWeight:600,color:"var(--ink-900)",marginTop:2}}>{user.name||user.email}</p>
-                  <div style={{display:"flex",gap:8,marginTop:10}}>
-                    <button onClick={()=>go("account")}
-                      style={{flex:1,height:36,background:"var(--brand)",color:"white",border:"none",
-                        borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer"}}>My Account</button>
-                    <button onClick={handleLogout}
-                      style={{flex:1,height:36,background:"white",color:"var(--ink-700)",
-                        border:"1px solid var(--ink-300)",borderRadius:6,fontSize:13,cursor:"pointer"}}>Sign out</button>
-                  </div>
-                </div>
-              ) : (
-                <div style={{display:"flex",gap:8}}>
-                  <button onClick={()=>go("login")}
-                    style={{flex:1,height:40,background:"var(--brand)",color:"white",border:"none",
-                      borderRadius:8,fontSize:14,fontWeight:600,cursor:"pointer"}}>Sign in</button>
-                  <button onClick={()=>go("register")}
-                    style={{flex:1,height:40,background:"white",color:"var(--ink-900)",
-                      border:"1.5px solid var(--ink-300)",borderRadius:8,fontSize:14,cursor:"pointer"}}>Register</button>
-                </div>
-              )}
-            </div>
-
-            {/* Nav links */}
-            <div style={{padding:"8px 0"}}>
-              <button onClick={()=>go("shop")}
-                style={{display:"block",width:"100%",textAlign:"left",padding:"14px var(--px)",
-                  fontSize:15,fontWeight:600,color:"var(--ink-900)",background:"none",border:"none",
-                  cursor:"pointer",borderBottom:"1px solid var(--ink-100)"}}>
-                All Products
-              </button>
-              {CATEGORIES.map(c=>(
-                <button key={c.slug} onClick={()=>go("category",{slug:c.slug})}
-                  style={{display:"flex",alignItems:"center",justifyContent:"space-between",
-                    width:"100%",textAlign:"left",padding:"13px var(--px)",
-                    fontSize:14,color:"var(--ink-700)",background:"none",border:"none",
-                    cursor:"pointer",borderBottom:"1px solid var(--ink-100)"}}>
-                  {c.name}
-                  <span style={{fontSize:12,color:"var(--ink-400)"}}>{c.count}</span>
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       )}
@@ -722,8 +559,8 @@ function Footer() {
 
   return (
     <footer data-testid="footer" style={{background:"var(--ink-900)",color:"var(--ink-200)",marginTop:96}}>
-      <div style={{maxWidth:1280,margin:"0 auto",padding:"48px var(--px)"}}>
-        <div className="footer-grid">
+      <div style={{maxWidth:1280,margin:"0 auto",padding:"56px 32px"}}>
+        <div style={{display:"grid",gridTemplateColumns:"4fr 2fr 2fr 2fr 2fr",gap:40,flexWrap:"wrap"}}>
           <div>
             <Logo inverted/>
             <p style={{marginTop:16,fontSize:13.5,color:"var(--ink-400)",lineHeight:1.7,maxWidth:300}}>
@@ -873,11 +710,11 @@ function ProductCard({product}) {
   );
 }
 
-// ── ProductGrid ────────────────────────────────────────────
+// ── ProductGrid — exact ProductGrid.jsx ────────────────────
 function ProductGrid({products,loading,columns=4,skeletonCount=8}) {
-  const cls = columns===3 ? "grid-3" : "grid-4";
+  const grid = {display:"grid",gridTemplateColumns:`repeat(${columns},minmax(0,1fr))`,gap:24};
   if (loading) return (
-    <div className={cls} data-testid="shop-product-grid">
+    <div style={grid} data-testid="shop-product-grid">
       {Array.from({length:skeletonCount}).map((_,i)=>(
         <div key={i} style={{background:"white",border:"1px solid var(--ink-100)",borderRadius:12,overflow:"hidden"}}>
           <div className="skeleton" style={{aspectRatio:"1"}}/>
@@ -893,13 +730,13 @@ function ProductGrid({products,loading,columns=4,skeletonCount=8}) {
   );
   if (!products?.length) return (
     <div data-testid="shop-empty-state"
-      style={{textAlign:"center",padding:"60px 20px",border:"1.5px dashed var(--ink-200)",borderRadius:12}}>
+      style={{textAlign:"center",padding:"80px 20px",border:"1.5px dashed var(--ink-200)",borderRadius:12}}>
       <p style={{fontWeight:600,color:"var(--ink-700)"}}>No products match your filters.</p>
       <p style={{fontSize:14,color:"var(--ink-500)",marginTop:4}}>Try adjusting filters or clearing them all.</p>
     </div>
   );
   return (
-    <div className={cls} data-testid="shop-product-grid">
+    <div style={grid} data-testid="shop-product-grid">
       {products.map(p=><ProductCard key={p.id} product={p}/>)}
     </div>
   );
@@ -927,45 +764,50 @@ function HomePage() {
   return (
     <div data-testid="home-page">
 
-      {/* HERO */}
+      {/* HERO — from Home.jsx */}
       <section style={{position:"relative",background:"var(--ink-900)",color:"white",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,opacity:0.3}}>
           <img src="https://images.pexels.com/photos/5625003/pexels-photo-5625003.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
         </div>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(to right,var(--ink-900) 0%,rgba(17,24,39,.85) 50%,transparent 100%)"}}/>
-        <div className="hero-inner">
+        <div style={{position:"relative",maxWidth:1280,margin:"0 auto",padding:"80px 32px",
+          display:"grid",gridTemplateColumns:"1fr 1fr",gap:40,alignItems:"center"}}>
           <div>
             <span style={{display:"inline-block",padding:"4px 12px",background:"rgba(232,98,26,.15)",
               border:"1px solid rgba(232,98,26,.3)",color:"var(--brand)",fontSize:11,fontWeight:700,
               textTransform:"uppercase",letterSpacing:"0.12em",borderRadius:20}}>
               Flash Sale · Limited Time
             </span>
-            <h1 style={{marginTop:16,fontSize:"clamp(2rem,7vw,3.5rem)",fontWeight:800,lineHeight:1.1,letterSpacing:"-0.02em"}}>
+            <h1 style={{marginTop:20,fontSize:"clamp(2.2rem,4vw,3.5rem)",fontWeight:800,lineHeight:1.1,letterSpacing:"-0.02em"}}>
               Abundant deals.<br/>
               <span style={{color:"var(--brand)"}}>Every day, every aisle.</span>
             </h1>
-            <p style={{marginTop:16,fontSize:15,color:"var(--ink-300)",maxWidth:480,lineHeight:1.75}}>
-              Shop thousands of products across electronics, home, fashion, and more — up to 40% off this week.
+            <p style={{marginTop:20,fontSize:16,color:"var(--ink-300)",maxWidth:480,lineHeight:1.75}}>
+              Shop thousands of products across electronics, home, fashion, and more — with up to 40% off this week and free shipping on orders over $49.
             </p>
-            <div style={{marginTop:28,display:"flex",gap:12,flexWrap:"wrap"}}>
+            <div style={{marginTop:32,display:"flex",gap:12,flexWrap:"wrap"}}>
               <button data-testid="home-hero-cta-button" onClick={()=>navigate("shop")}
                 style={{display:"inline-flex",alignItems:"center",gap:8,background:"var(--brand)",
-                  color:"white",fontWeight:600,borderRadius:8,padding:"13px 24px",border:"none",
-                  fontSize:15,cursor:"pointer"}}>
+                  color:"white",fontWeight:600,borderRadius:8,padding:"12px 24px",border:"none",
+                  fontSize:14,cursor:"pointer",transition:"background .15s"}}
+                onMouseEnter={e=>e.currentTarget.style.background="var(--brand-h)"}
+                onMouseLeave={e=>e.currentTarget.style.background="var(--brand)"}>
                 Shop the sale <ArrowRight size={16}/>
               </button>
               <button data-testid="home-hero-secondary-cta-button"
                 onClick={()=>navigate("category",{slug:"electronics"})}
                 style={{display:"inline-flex",alignItems:"center",gap:8,
                   background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",
-                  color:"white",fontWeight:600,borderRadius:8,padding:"13px 24px",
-                  fontSize:15,cursor:"pointer"}}>
+                  color:"white",fontWeight:600,borderRadius:8,padding:"12px 24px",
+                  fontSize:14,cursor:"pointer",transition:"background .15s"}}
+                onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,.2)"}
+                onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,.1)"}>
                 Browse Electronics
               </button>
             </div>
           </div>
-          <div className="hero-imgs">
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
             <img src="https://images.pexels.com/photos/705164/computer-laptop-work-place-camera-705164.jpeg?auto=compress&cs=tinysrgb&w=600"
               alt="" style={{borderRadius:12,aspectRatio:"4/5",objectFit:"cover",width:"100%"}}/>
             <div style={{display:"flex",flexDirection:"column",gap:16,paddingTop:40}}>
@@ -980,13 +822,14 @@ function HomePage() {
 
       {/* TRUST BAR */}
       <section style={{borderBottom:"1px solid var(--ink-200)",background:"var(--ink-50)"}}>
-        <div className="trust-grid">
+        <div style={{maxWidth:1280,margin:"0 auto",padding:"24px 32px",
+          display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:24}}>
           {TRUST.map(({Icon,title,sub})=>(
-            <div key={title} style={{display:"flex",alignItems:"center",gap:10}}>
-              <Icon size={22} color="var(--brand)"/>
+            <div key={title} style={{display:"flex",alignItems:"center",gap:12}}>
+              <Icon size={24} color="var(--brand)"/>
               <div>
-                <p style={{fontSize:13,fontWeight:600,color:"var(--ink-900)"}}>{title}</p>
-                <p style={{fontSize:11,color:"var(--ink-500)"}}>{sub}</p>
+                <p style={{fontSize:13.5,fontWeight:600,color:"var(--ink-900)"}}>{title}</p>
+                <p style={{fontSize:12,color:"var(--ink-500)"}}>{sub}</p>
               </div>
             </div>
           ))}
@@ -994,29 +837,36 @@ function HomePage() {
       </section>
 
       {/* CATEGORIES */}
-      <section className="section-pad">
-        <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between",marginBottom:24}}>
+      <section style={{maxWidth:1280,margin:"0 auto",padding:"64px 32px"}}>
+        <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between",marginBottom:32}}>
           <div>
             <p style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.12em",color:"var(--brand)"}}>Shop by department</p>
-            <h2 style={{fontSize:"clamp(1.3rem,3vw,2rem)",fontWeight:700,color:"var(--ink-900)",marginTop:4}}>Explore categories</h2>
+            <h2 style={{fontSize:"clamp(1.5rem,3vw,2rem)",fontWeight:700,color:"var(--ink-900)",marginTop:4}}>Explore categories</h2>
           </div>
           <button data-testid="home-shop-all-cta-button" onClick={()=>navigate("shop")}
-            style={{display:"inline-flex",alignItems:"center",gap:4,fontSize:13,fontWeight:600,
-              color:"var(--brand)",background:"none",border:"none",cursor:"pointer",flexShrink:0}}>
-            View all <ArrowRight size={15}/>
+            style={{display:"inline-flex",alignItems:"center",gap:4,fontSize:13.5,fontWeight:600,
+              color:"var(--brand)",background:"none",border:"none",cursor:"pointer"}}>
+            View all <ArrowRight size={16}/>
           </button>
         </div>
-        <div data-testid="home-categories-grid" className="cat-grid">
+        <div data-testid="home-categories-grid"
+          style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20}}>
           {CATEGORIES.slice(0,8).map(c=>(
             <button key={c.slug} data-testid="home-category-tile"
               onClick={()=>navigate("category",{slug:c.slug})}
-              style={{position:"relative",aspectRatio:"4/5",borderRadius:10,overflow:"hidden",
-                border:"1px solid var(--ink-100)",cursor:"pointer",background:"none",padding:0}}>
-              <img src={c.image} alt={c.name} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-              <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(17,24,39,.85) 0%,rgba(17,24,39,.2) 60%,transparent 100%)"}}/>
-              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"10px 12px"}}>
-                <h3 style={{color:"white",fontWeight:600,fontSize:13,lineHeight:1.3}}>{c.name}</h3>
-                <p style={{color:"rgba(255,255,255,.7)",fontSize:11,marginTop:2}}>{c.count} items</p>
+              style={{position:"relative",aspectRatio:"5/6",borderRadius:12,overflow:"hidden",
+                border:"1px solid var(--ink-100)",cursor:"pointer",background:"none",padding:0,
+                transition:"all .3s"}}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(232,98,26,.3)";e.currentTarget.style.boxShadow="0 8px 24px rgba(0,0,0,.1)";}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--ink-100)";e.currentTarget.style.boxShadow="";}}>
+              <img src={c.image} alt={c.name}
+                style={{width:"100%",height:"100%",objectFit:"cover",transition:"transform .5s"}}
+                onMouseEnter={e=>e.target.style.transform="scale(1.05)"}
+                onMouseLeave={e=>e.target.style.transform="scale(1)"}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(17,24,39,.85) 0%,rgba(17,24,39,.3) 50%,transparent 100%)"}}/>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:16}}>
+                <h3 style={{color:"white",fontWeight:600,fontSize:15}}>{c.name}</h3>
+                <p style={{color:"rgba(255,255,255,.7)",fontSize:12,marginTop:2}}>{c.count} items</p>
               </div>
             </button>
           ))}
@@ -1025,16 +875,16 @@ function HomePage() {
 
       {/* FEATURED PRODUCTS */}
       <section style={{background:"var(--ink-50)",borderTop:"1px solid var(--ink-200)",borderBottom:"1px solid var(--ink-200)"}}>
-        <div className="section-pad">
-          <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between",marginBottom:24}}>
+        <div style={{maxWidth:1280,margin:"0 auto",padding:"64px 32px"}}>
+          <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between",marginBottom:32}}>
             <div>
               <p style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.12em",color:"var(--brand)"}}>Hand-picked for you</p>
-              <h2 style={{fontSize:"clamp(1.3rem,3vw,2rem)",fontWeight:700,color:"var(--ink-900)",marginTop:4}}>Featured products</h2>
+              <h2 style={{fontSize:"clamp(1.5rem,3vw,2rem)",fontWeight:700,color:"var(--ink-900)",marginTop:4}}>Featured products</h2>
             </div>
             <button onClick={()=>navigate("shop")}
-              style={{display:"inline-flex",alignItems:"center",gap:4,fontSize:13,fontWeight:600,
-                color:"var(--brand)",background:"none",border:"none",cursor:"pointer",flexShrink:0}}>
-              Shop all <ArrowRight size={15}/>
+              style={{display:"inline-flex",alignItems:"center",gap:4,fontSize:13.5,fontWeight:600,
+                color:"var(--brand)",background:"none",border:"none",cursor:"pointer"}}>
+              Shop all <ArrowRight size={16}/>
             </button>
           </div>
           <div data-testid="home-featured-grid">
@@ -1044,33 +894,38 @@ function HomePage() {
       </section>
 
       {/* PROMO BENTO */}
-      <section className="section-pad">
-        <div className="bento">
+      <section style={{maxWidth:1280,margin:"0 auto",padding:"64px 32px"}}>
+        <div style={{display:"grid",gridTemplateColumns:"8fr 4fr",gap:24}}>
           <div style={{position:"relative",borderRadius:12,overflow:"hidden",background:"var(--ink-900)",
-            color:"white",padding:"36px 28px",minHeight:220,display:"flex",alignItems:"flex-end"}}>
+            color:"white",padding:48,minHeight:260,display:"flex",alignItems:"flex-end"}}>
             <img src="https://images.pexels.com/photos/5872176/pexels-photo-5872176.jpeg?auto=compress&cs=tinysrgb&w=1200"
               alt="" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",opacity:.4}}/>
             <div style={{position:"relative"}}>
               <p style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.12em",color:"var(--brand)"}}>New arrivals</p>
-              <h3 style={{fontSize:"clamp(1.1rem,2.5vw,1.75rem)",fontWeight:700,marginTop:6,lineHeight:1.25}}>Fresh picks for your workspace</h3>
-              <p style={{color:"var(--ink-300)",fontSize:13.5,marginTop:8}}>Tech, gear, and office essentials — updated weekly.</p>
+              <h3 style={{fontSize:"clamp(1.3rem,2.5vw,1.75rem)",fontWeight:700,marginTop:8,lineHeight:1.25}}>Fresh picks for your workspace</h3>
+              <p style={{color:"var(--ink-300)",fontSize:13.5,marginTop:8,maxWidth:380}}>Tech, gear, and office essentials — updated weekly.</p>
               <button onClick={()=>navigate("category",{slug:"office"})}
-                style={{display:"inline-flex",alignItems:"center",gap:8,marginTop:16,
+                style={{display:"inline-flex",alignItems:"center",gap:8,marginTop:20,
                   background:"white",color:"var(--ink-900)",fontWeight:600,borderRadius:8,
-                  padding:"10px 20px",fontSize:13.5,border:"none",cursor:"pointer"}}>
+                  padding:"10px 20px",fontSize:13.5,border:"none",cursor:"pointer",transition:"all .15s"}}
+                onMouseEnter={e=>{e.currentTarget.style.background="var(--brand)";e.currentTarget.style.color="white";}}
+                onMouseLeave={e=>{e.currentTarget.style.background="white";e.currentTarget.style.color="var(--ink-900)";}}>
                 Shop now <ArrowRight size={16}/>
               </button>
             </div>
           </div>
           <div style={{position:"relative",borderRadius:12,overflow:"hidden",background:"var(--brand)",
-            color:"white",padding:"32px 28px",minHeight:180,display:"flex",flexDirection:"column",justifyContent:"flex-end"}}>
+            color:"white",padding:32,minHeight:260,display:"flex",flexDirection:"column",justifyContent:"flex-end"}}>
             <p style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.12em",color:"rgba(255,255,255,.8)"}}>Member exclusive</p>
-            <h3 style={{fontSize:"1.5rem",fontWeight:700,marginTop:6}}>Save 10%</h3>
-            <p style={{color:"rgba(255,255,255,.9)",fontSize:13.5,marginTop:6}}>Sign up & unlock first-order savings.</p>
+            <h3 style={{fontSize:"1.5rem",fontWeight:700,marginTop:8}}>Save 10%</h3>
+            <p style={{color:"rgba(255,255,255,.9)",fontSize:13.5,marginTop:8}}>Sign up & unlock first-order savings.</p>
             <button onClick={()=>navigate("register")}
-              style={{display:"inline-flex",alignItems:"center",gap:8,marginTop:16,
+              style={{display:"inline-flex",alignItems:"center",gap:8,marginTop:20,
                 background:"white",color:"var(--brand)",fontWeight:600,borderRadius:8,
-                padding:"10px 20px",fontSize:13.5,border:"none",cursor:"pointer",width:"fit-content"}}>
+                padding:"10px 20px",fontSize:13.5,border:"none",cursor:"pointer",
+                width:"fit-content",transition:"all .15s"}}
+              onMouseEnter={e=>{e.currentTarget.style.background="var(--ink-900)";e.currentTarget.style.color="white";}}
+              onMouseLeave={e=>{e.currentTarget.style.background="white";e.currentTarget.style.color="var(--brand)";}}>
               Create account
             </button>
           </div>
@@ -1229,49 +1084,49 @@ function ShopPage({fixedCategory=null,headerTitle="All Products",headerSub="Disc
   );
 
   return (
-    <div data-testid="shop-page" style={{maxWidth:1280,margin:"0 auto",padding:"24px var(--px) 48px"}}>
-      <div style={{marginBottom:24}}>
-        <h1 style={{fontSize:"clamp(1.5rem,3vw,2.25rem)",fontWeight:800,color:"var(--ink-900)"}}>{headerTitle}</h1>
-        <p style={{color:"var(--ink-500)",marginTop:6,fontSize:14}}>{headerSub}</p>
+    <div data-testid="shop-page" style={{maxWidth:1280,margin:"0 auto",padding:"32px 32px"}}>
+      <div style={{marginBottom:32}}>
+        <h1 style={{fontSize:"clamp(1.75rem,3vw,2.25rem)",fontWeight:800,color:"var(--ink-900)"}}>{headerTitle}</h1>
+        <p style={{color:"var(--ink-500)",marginTop:8,fontSize:14}}>{headerSub}</p>
       </div>
 
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:20,gap:10,flexWrap:"wrap"}}>
-        <form onSubmit={e=>{e.preventDefault();setPage(1);}} style={{flex:1,minWidth:0}}>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:24,gap:16,flexWrap:"wrap"}}>
+        <form onSubmit={e=>{e.preventDefault();setPage(1);}} style={{flex:1,maxWidth:480}}>
           <div style={{position:"relative"}}>
             <input data-testid="shop-search-input" value={searchInput}
               onChange={e=>{setSearchInput(e.target.value);setPage(1);}}
               placeholder="Search products…"
-              style={{width:"100%",height:44,padding:"0 80px 0 16px",fontSize:16,
+              style={{width:"100%",height:44,padding:"0 80px 0 16px",fontSize:13.5,
                 background:"white",border:"1.5px solid var(--ink-300)",borderRadius:8}}/>
             <button data-testid="shop-search-submit" type="submit"
-              style={{position:"absolute",right:4,top:4,height:36,padding:"0 14px",
+              style={{position:"absolute",right:4,top:4,height:36,padding:"0 16px",
                 fontSize:12,fontWeight:600,color:"white",background:"var(--brand)",
                 border:"none",borderRadius:6,cursor:"pointer"}}>
               Search
             </button>
           </div>
         </form>
-        <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:8}}>
           <button data-testid="shop-filter-toggle-button" onClick={()=>setDrawerOpen(true)}
-            style={{display:"inline-flex",alignItems:"center",gap:6,height:44,padding:"0 14px",
-              fontSize:14,fontWeight:600,color:"var(--ink-900)",background:"white",
+            style={{display:"inline-flex",alignItems:"center",gap:8,height:40,padding:"0 16px",
+              fontSize:13.5,fontWeight:600,color:"var(--ink-900)",background:"white",
               border:"1.5px solid var(--ink-300)",borderRadius:8,cursor:"pointer"}}>
             <Filter size={16}/>Filters
           </button>
           <select data-testid="shop-sort-select" value={sort} onChange={e=>{setSort(e.target.value);setPage(1);}}
-            style={{height:44,padding:"0 10px",fontSize:14,background:"white",
+            style={{height:40,padding:"0 12px",fontSize:13.5,background:"white",
               border:"1.5px solid var(--ink-300)",borderRadius:8}}>
             <option value="newest">Newest</option>
-            <option value="price_asc">Price ↑</option>
-            <option value="price_desc">Price ↓</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
             <option value="rating">Top Rated</option>
-            <option value="popular">Popular</option>
+            <option value="popular">Most Popular</option>
           </select>
         </div>
       </div>
 
-      <div className="shop-layout">
-        <div className="shop-sidebar"><Sidebar/></div>
+      <div style={{display:"grid",gridTemplateColumns:"260px 1fr",gap:32}}>
+        <div><Sidebar/></div>
         <div>
           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:16}}>
             <p data-testid="shop-results-count" style={{fontSize:13.5,color:"var(--ink-500)"}}>
@@ -1403,10 +1258,10 @@ function ProductDetailPage({params}) {
   });
 
   return (
-    <div data-testid="product-detail-page" style={{maxWidth:1280,margin:"0 auto",padding:"20px var(--px) 48px"}}>
+    <div data-testid="product-detail-page" style={{maxWidth:1280,margin:"0 auto",padding:"32px 32px"}}>
       {/* Breadcrumb */}
       <nav data-testid="product-detail-breadcrumb"
-        style={{display:"flex",alignItems:"center",gap:6,fontSize:12,color:"var(--ink-500)",marginBottom:20,flexWrap:"wrap"}}>
+        style={{display:"flex",alignItems:"center",gap:6,fontSize:12,color:"var(--ink-500)",marginBottom:24}}>
         {[["Home","home"],["Shop","shop"]].map(([l,p])=>(
           <span key={p} style={{display:"flex",alignItems:"center",gap:6}}>
             <button onClick={()=>navigate(p)} style={{background:"none",border:"none",color:"var(--brand)",cursor:"pointer",fontSize:12,fontWeight:500}}>{l}</button>
@@ -1418,10 +1273,10 @@ function ProductDetailPage({params}) {
           {product.category.replace("-"," ")}
         </button>
         <ChevronRight size={12}/>
-        <span style={{color:"var(--ink-700)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:160}}>{product.title}</span>
+        <span style={{color:"var(--ink-700)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:200}}>{product.title}</span>
       </nav>
 
-      <div className="detail-grid" style={{marginBottom:48}}>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:48,marginBottom:64}}>
         {/* Gallery */}
         <div>
           <div data-testid="product-detail-image-main"
@@ -1754,15 +1609,15 @@ function AccountPage() {
   const {Package2,MapPin,User} = icons;
   if (!user) { navigate("login"); return null; }
   return (
-    <div style={{maxWidth:900,margin:"0 auto",padding:"32px var(--px) 64px"}}>
-      <div style={{marginBottom:32}}>
+    <div style={{maxWidth:900,margin:"0 auto",padding:"48px 32px"}}>
+      <div style={{marginBottom:40}}>
         <p style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.12em",color:"var(--brand)"}}>My Account</p>
         <h1 style={{marginTop:4,fontSize:"clamp(1.6rem,3vw,2.25rem)",fontWeight:800,color:"var(--ink-900)"}}>
           Hi, {user?.name||"there"} 👋
         </h1>
         <p style={{color:"var(--ink-500)",marginTop:8}}>{user?.email}</p>
       </div>
-      <div className="account-grid">
+      <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:16}}>
         {[
           {Icon:Package2,title:"My Orders",      desc:"Track packages and view order history (launches Phase 2)"},
           {Icon:MapPin,  title:"Addresses",       desc:"Manage shipping and billing addresses"},
@@ -1832,31 +1687,32 @@ function AdminDashboard() {
 
   return (
     <div data-testid="admin-dashboard" style={{background:"var(--ink-50)",minHeight:"calc(100vh - 100px)"}}>
-      <div style={{maxWidth:1280,margin:"0 auto",padding:"24px var(--px)"}}>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:24,flexWrap:"wrap",gap:12}}>
+      <div style={{maxWidth:1280,margin:"0 auto",padding:"32px 32px"}}>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:32}}>
           <div>
             <p style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.12em",color:"var(--brand)"}}>Admin</p>
-            <h1 style={{marginTop:4,fontSize:"clamp(1.4rem,3vw,2.25rem)",fontWeight:800,color:"var(--ink-900)"}}>Control panel</h1>
+            <h1 style={{marginTop:4,fontSize:"clamp(1.6rem,3vw,2.25rem)",fontWeight:800,color:"var(--ink-900)"}}>Control panel</h1>
           </div>
           <button onClick={()=>navigate("home")}
             style={{display:"inline-flex",alignItems:"center",gap:6,fontSize:13.5,fontWeight:600,
-              color:"var(--ink-700)",background:"none",border:"none",cursor:"pointer"}}>
+              color:"var(--ink-700)",background:"none",border:"none",cursor:"pointer"}}
+            onMouseEnter={e=>e.currentTarget.style.color="var(--brand)"}
+            onMouseLeave={e=>e.currentTarget.style.color="var(--ink-700)"}>
             ← Back to store
           </button>
         </div>
 
         {/* Stats */}
-        <div className="admin-stats" style={{marginBottom:24}}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:16,marginBottom:32}}>
           {statCards.map(s=>(
             <div key={s.label} data-testid="admin-stats-card"
-              style={{padding:16,background:"white",border:"1.5px solid var(--ink-200)",borderRadius:12,
+              style={{padding:20,background:"white",border:"1.5px solid var(--ink-200)",borderRadius:12,
                 display:"flex",alignItems:"flex-start",justifyContent:"space-between"}}>
               <div>
-                <p style={{fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.1em",color:"var(--ink-500)"}}>{s.label}</p>
-                <p style={{marginTop:6,fontSize:"1.5rem",fontWeight:800,color:"var(--ink-900)",letterSpacing:"-0.01em"}}>{s.value}</p>
+                <p style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.1em",color:"var(--ink-500)"}}>{s.label}</p>
+                <p style={{marginTop:8,fontSize:"1.6rem",fontWeight:800,color:"var(--ink-900)",letterSpacing:"-0.01em"}}>{s.value}</p>
               </div>
-              <div style={{width:36,height:36,borderRadius:8,background:"var(--brand-50)",display:"flex",alignItems:"center",justifyContent:"center"}}>
-
+              <div style={{width:40,height:40,borderRadius:10,background:"var(--brand-50)",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <s.Icon size={20} color="var(--brand)"/>
               </div>
             </div>
